@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #191919;
+      color: #ffffff;
+      padding: 16px;
+      margin: 0;
+    }
+    .card {
+      background: #202020;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 16px 20px;
+      max-width: 380px;
+    }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #ff7575;
+      font-size: 17px;
+      border-bottom: 1px solid #2e2e2e;
+      padding-bottom: 8px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 2.2;
+      font-size: 14.5px;
+    }
+    .badge-orange {
+      background: #3b2d1d;
+      color: #f59e0b;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .badge-green {
+      background: #1e3a2f;
+      color: #10b981;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .badge-gray {
+      background: #2a2a2a;
+      color: #9ca3af;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h3>💊 أدوية الصباح</h3>
+    <ul>
+      <li>• Nebilet (5 mg)</li>
+      <li id="dynamic-med"></li>
+      <li>• Plavix (75 mg)</li>
+      <li>• Jardiance (10 mg)</li>
+      <li>• Omnic Ocas (0.4 mg)</li>
+      <li>• Nitromac Retard (2.5 mg)</li>
+      <li>• Baclofen (10 mg)</li>
+      <li>• Ranexa (500 mg)</li>
+    </ul>
+  </div>
+
+  <script>
+    const startDate = new Date("2026-01-01T00:00:00");
+    const today = new Date();
+    const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    const cycle = ((diffDays % 3) + 3) % 3;
+
+    let medText = "";
+    if (cycle === 0) {
+      medText = "• <span class='badge-orange'>Exforge HCT (10/160/12.5 mg)</span>";
+    } else if (cycle === 1) {
+      medText = "• <span class='badge-green'>Amlor (5 mg)</span>";
+    } else {
+      medText = "• <span class='badge-gray'>⚪ اليوم راحة (بدون إكسفورج أو أملور)</span>";
+    }
+    document.getElementById("dynamic-med").innerHTML = medText;
+  </script>
+</body>
+</html>
