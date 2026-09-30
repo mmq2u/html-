@@ -86,7 +86,7 @@
       <li><span>Plavix</span> <span class="dose">75 mg</span></li>
       <li><span>Jardiance</span> <span class="dose">10 mg</span></li>
       <li><span>Omnic Ocas</span> <span class="dose">0.4 mg</span></li>
-      <li><span>Nitromak Retard</span> <span class="dose">2.5 mg</span></li>
+      <li><span>Nitromac Retard</span> <span class="dose">2.5 mg</span></li>
       <li><span>Baclofen</span> <span class="dose">10 mg</span></li>
       <li><span>Ranexa</span> <span class="dose">500 mg</span></li>
     </ul>
@@ -107,7 +107,7 @@
   <div class="card">
     <h3 class="evening-title">🌙 دواء العشاء</h3>
     <ul>
-      <li><span>Nitromak Retard</span> <span class="dose">2.5 mg</span></li>
+      <li><span>Nitromac Retard</span> <span class="dose">2.5 mg</span></li>
       <li><span>LipoComp (ليبوكومب)</span> <span class="dose">20/10 mg</span></li>
       <li><span>Omnic Ocas</span> <span class="dose">0.4 mg</span></li>
       <li><span>Xanthistop (زانستوب)</span> <span class="dose">80 mg</span></li>
@@ -119,21 +119,25 @@
   </div>
 
   <script>
-    const startDate = new Date("2026-01-01T00:00:00");
+    // بداية الدورة من اليوم: 1 أكتوبر 2026 (Exforge HCT)
+    const startDate = new Date("2026-10-01T00:00:00");
     const today = new Date();
     const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const cycle = ((diffDays % 3) + 3) % 3;
+    const cycle = ((diffDays % 4) + 4) % 4;
 
     const dynElement = document.getElementById("dynamic-med");
     if (cycle === 0) {
       dynElement.className = "badge-orange";
-      dynElement.innerHTML = "<span>💊 Exforge HCT</span> <span class='dose'>10/160/12.5 mg</span>";
+      dynElement.innerHTML = "<span>💊 Exforge HCT</span> <span class='dose'>5/160/12.5 mg</span>";
     } else if (cycle === 1) {
+      dynElement.className = "badge-gray";
+      dynElement.innerHTML = "<span>⚪ يوم فاصل (راحة)</span> <span class='dose'>—</span>";
+    } else if (cycle === 2) {
       dynElement.className = "badge-green";
       dynElement.innerHTML = "<span>💊 Amlor</span> <span class='dose'>5 mg</span>";
     } else {
       dynElement.className = "badge-gray";
-      dynElement.innerHTML = "<span>⚪ راحة (بدون إكسفورج أو أملور)</span> <span class='dose'>—</span>";
+      dynElement.innerHTML = "<span>⚪ يوم فاصل (راحة)</span> <span class='dose'>—</span>";
     }
   </script>
 </body>
