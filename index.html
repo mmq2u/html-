@@ -2,70 +2,119 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جدول أدوية الوالد</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #191919;
-      color: #ffffff;
+      color: #e5e7eb;
       padding: 16px;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
     }
     .card {
       background: #202020;
-      border: 1px solid #333;
-      border-radius: 10px;
+      border: 1px solid #333333;
+      border-radius: 12px;
       padding: 16px 20px;
-      max-width: 380px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      color: #ff7575;
-      font-size: 17px;
-      border-bottom: 1px solid #2e2e2e;
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       padding-bottom: 8px;
+      border-bottom: 1px solid #2e2e2e;
     }
+    .morning-title { color: #f87171; }
+    .afternoon-title { color: #fbbf24; }
+    .evening-title { color: #60a5fa; }
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      line-height: 2.2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    li {
       font-size: 14.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #262626;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+    .dose {
+      color: #9ca3af;
+      font-weight: bold;
+      font-size: 13px;
+      direction: ltr;
     }
     .badge-orange {
-      background: #3b2d1d;
-      color: #f59e0b;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: bold;
+      background: #451a03;
+      color: #fbbf24;
+      border: 1px solid #b45309;
     }
     .badge-green {
-      background: #1e3a2f;
-      color: #10b981;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: bold;
+      background: #064e3b;
+      color: #34d399;
+      border: 1px solid #059669;
     }
     .badge-gray {
-      background: #2a2a2a;
+      background: #262626;
       color: #9ca3af;
-      padding: 2px 7px;
-      border-radius: 4px;
+      border: 1px dashed #525252;
     }
   </style>
 </head>
 <body>
+
+  <!-- بطاقة أدوية الصباح -->
   <div class="card">
-    <h3>💊 أدوية الصباح</h3>
+    <h3 class="morning-title">☀️ أدوية الصباح</h3>
     <ul>
-      <li>• Nebilet (5 mg)</li>
+      <li><span>Nebilet</span> <span class="dose">5 mg</span></li>
       <li id="dynamic-med"></li>
-      <li>• Plavix (75 mg)</li>
-      <li>• Jardiance (10 mg)</li>
-      <li>• Omnic Ocas (0.4 mg)</li>
-      <li>• Nitromac Retard (2.5 mg)</li>
-      <li>• Baclofen (10 mg)</li>
-      <li>• Ranexa (500 mg)</li>
+      <li><span>Plavix</span> <span class="dose">75 mg</span></li>
+      <li><span>Jardiance</span> <span class="dose">10 mg</span></li>
+      <li><span>Omnic Ocas</span> <span class="dose">0.4 mg</span></li>
+      <li><span>Nitromak Retard</span> <span class="dose">2.5 mg</span></li>
+      <li><span>Baclofen</span> <span class="dose">10 mg</span></li>
+      <li><span>Ranexa</span> <span class="dose">500 mg</span></li>
+    </ul>
+  </div>
+
+  <!-- بطاقة أدوية العصر -->
+  <div class="card">
+    <h3 class="afternoon-title">🌤️ دواء العصر</h3>
+    <ul>
+      <li><span>Cardura</span> <span class="dose">1 mg</span></li>
+      <li><span>Neurofit (نيروفيت)</span> <span class="dose">—</span></li>
+      <li><span>CoQ10 (كو كيو 10)</span> <span class="dose">100 mg</span></li>
+      <li><span>Lioresal (Baclofen)</span> <span class="dose">10 mg</span></li>
+    </ul>
+  </div>
+
+  <!-- بطاقة أدوية العشاء -->
+  <div class="card">
+    <h3 class="evening-title">🌙 دواء العشاء</h3>
+    <ul>
+      <li><span>Nitromak Retard</span> <span class="dose">2.5 mg</span></li>
+      <li><span>LipoComp (ليبوكومب)</span> <span class="dose">20/10 mg</span></li>
+      <li><span>Omnic Ocas</span> <span class="dose">0.4 mg</span></li>
+      <li><span>Xanthistop (زانستوب)</span> <span class="dose">80 mg</span></li>
+      <li><span>Ranexa</span> <span class="dose">500 mg</span></li>
+      <li><span>Carfalone</span> <span class="dose">25 mg</span></li>
+      <li><span>Sofanscine</span> <span class="dose">5 mg</span></li>
+      <li><span>Lamfin</span> <span class="dose">250 mg</span></li>
     </ul>
   </div>
 
@@ -75,15 +124,17 @@
     const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
     const cycle = ((diffDays % 3) + 3) % 3;
 
-    let medText = "";
+    const dynElement = document.getElementById("dynamic-med");
     if (cycle === 0) {
-      medText = "• <span class='badge-orange'>Exforge HCT (10/160/12.5 mg)</span>";
+      dynElement.className = "badge-orange";
+      dynElement.innerHTML = "<span>💊 Exforge HCT</span> <span class='dose'>10/160/12.5 mg</span>";
     } else if (cycle === 1) {
-      medText = "• <span class='badge-green'>Amlor (5 mg)</span>";
+      dynElement.className = "badge-green";
+      dynElement.innerHTML = "<span>💊 Amlor</span> <span class='dose'>5 mg</span>";
     } else {
-      medText = "• <span class='badge-gray'>⚪ اليوم راحة (بدون إكسفورج أو أملور)</span>";
+      dynElement.className = "badge-gray";
+      dynElement.innerHTML = "<span>⚪ راحة (بدون إكسفورج أو أملور)</span> <span class='dose'>—</span>";
     }
-    document.getElementById("dynamic-med").innerHTML = medText;
   </script>
 </body>
 </html>
